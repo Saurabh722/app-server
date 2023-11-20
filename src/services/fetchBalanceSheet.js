@@ -1,5 +1,9 @@
+import system from "../system/index.js";
+
 async function fetchBalanceSheet(data) {
     try {
+        system.log(`balance-sheet Request: ${data}`);
+
         const response = await fetch('http://localhost:5002/balance-sheet', {
             method: 'POST',
             headers: {
@@ -13,10 +17,10 @@ async function fetchBalanceSheet(data) {
         if (resJson) {
             return resJson;
         } else {
-            console.log("Some thing went wrong.");
+            system.log("Some thing went wrong on fetching data from balance-sheet");
         }
     } catch (e) {
-        console.log(e);
+        system.log(e);
     }
 }
 

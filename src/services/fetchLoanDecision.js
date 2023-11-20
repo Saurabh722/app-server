@@ -1,3 +1,5 @@
+import system from "../system/index.js";
+
 function calculateProfitOrLossSummary(balanceSheets) {
     const summary = {};
     for (const balanceSheet of balanceSheets) {
@@ -20,7 +22,6 @@ function calculateProfitOrLossSummary(balanceSheets) {
 function calculatePreAssessment(loanAmount, summary) {
     const currentYear = new Date().getFullYear();
 
-    console.log(summary[currentYear - 1]);
     if (summary[currentYear - 1].profitOrLoss > 0) {
         const averageAssetValue = summary[currentYear - 1].assetsValue / 12;
         return averageAssetValue > loanAmount ? 100 : 60;
@@ -44,7 +45,7 @@ async function fetchLoanDecision(param) {
         preAssessment: calculatePreAssessment( param.loanAmount, summary )
     };
 
-    console.log(data);
+    system.log(`get-decision Request: ${data}`);
     try {
         const response = await fetch('http://localhost:5003/get-decision', {
             method: 'POST',
@@ -59,10 +60,10 @@ async function fetchLoanDecision(param) {
         if (resJson) {
             return resJson;
         } else {
-            console.log("Some thing went wrong.");
+            system.log("Some thing went wrong on fetching data from get-decision");
         }
     } catch (e) {
-        console.log(e);
+        system.log(e);
     }
 }
 

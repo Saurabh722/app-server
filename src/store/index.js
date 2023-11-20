@@ -9,11 +9,7 @@ const store = {
         return JSON.parse(localStorage.getItem(key));
     },
     set: (key, value) => {
-        if (!store.get(key)) {
-            localStorage.setItem(key, JSON.stringify(value));
-        } else {
-            return new Error(`Error: User with userId: ${key} already exists.`);
-        }
+        localStorage.setItem(key, JSON.stringify(value));
         
         return store.get(key);
     },

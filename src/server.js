@@ -3,6 +3,7 @@ import session from 'express-session';
 import cors from 'cors';
 
 import config from "./config.js";
+import system from "./system/index.js";
 import balanceSheetRoutes from "./routes/balance-sheet-routes.js";
 import decisionRoutes from './routes/decision-routes.js';
 import authenticationRoutes from './routes/authentication-routes.js';
@@ -29,5 +30,7 @@ balanceSheetRoutes(app);
 decisionRoutes(app);
 
 app.listen(config.PORT, () => {
+
   console.log(`Server is running on port ${config.PORT}`);
+  system.log(`Server is running on port ${config.PORT}`);
 });
