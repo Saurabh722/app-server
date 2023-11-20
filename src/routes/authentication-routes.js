@@ -1,5 +1,5 @@
 import store from "./../store/index.js";
-import system from "../system/index.js";
+import system from "./../services/systemLogs.js";
 
 export default function authenticationRoutes(app) {
   app.post('/register', (req, res) => {

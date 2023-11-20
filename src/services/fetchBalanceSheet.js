@@ -1,4 +1,4 @@
-import system from "../system/index.js";
+import system from "../services/systemLogs.js";
 
 async function fetchBalanceSheet(data) {
     try {
