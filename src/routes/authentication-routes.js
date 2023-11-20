@@ -32,7 +32,7 @@ export default function authenticationRoutes(app) {
     console.log(user);
     if (!user?.userId) {
       res.status(400).json({
-        data: "Bad Request",
+        data: 'Either username or password is incorrect',
         type: 'error',
       });
     }
@@ -41,7 +41,7 @@ export default function authenticationRoutes(app) {
 
     if (!currentUser) {
       res.status(400).json({
-        data: "Bad Request",
+        data: 'Either username or password is incorrect',
         type: 'error',
       });
     }
@@ -54,6 +54,13 @@ export default function authenticationRoutes(app) {
         data: currentUser,
         isAuth: true,
         type: 'success',
+      });
+    } else {
+      req.session.isAuth = false;
+      res.status(200).json({
+        data: 'Either username or password is incorrect',
+        isAuth: false,
+        type: 'error',
       });
     }
   });
